@@ -1,2 +1,2 @@
 #!/bin/bash
-sude chown vincent --from=guillaume hello
+sude chown --from=GUILLAUME vincent hello
