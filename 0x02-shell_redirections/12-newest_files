@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -l1t
+ls -t1
