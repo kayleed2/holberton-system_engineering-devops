@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "$RANDOM" | cut -c 1,2
+printf "%.2f\n" "$NUM"
