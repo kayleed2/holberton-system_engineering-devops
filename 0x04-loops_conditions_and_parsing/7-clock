@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# 0-12 hours, with 1-59 min in each: WHILE ex
+h="0"
+while
+(( h <= 12 ))
+do
+echo "Hour: $h"
+echo {1..59} | tr " " "\n"
+h=$(( h + 1)) ;
+done

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Info about Holbertonschool file using if/else
+if [ -e holbertonschool ]
+then
+    echo "holbertonschool file exists"
+    if [ -s holbertonschool ]
+    then
+	echo "holbertonschool file is not empty"
+    else  
+	echo "holbertonschool file is empty"
+    fi
+    if [ -f holbertonschool ]
+    then
+	     echo "holberton school is a regular file"
+    else
+	echo "nothin"  
+    fi
+
+else
+	echo "hs does not exist"
+    fi
+    
+    
+   
+    
+
+	 
+	 
