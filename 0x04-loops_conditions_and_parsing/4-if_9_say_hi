@@ -2,12 +2,12 @@
 # Holberton 10 times, but with iteration 9 saying hi
 i="0"
 while
-    [ $i -lt 9 ] ;
+    [ $i -lt 10 ] ;
 do
 echo "Holberton School"
 i=$(( i + 1 )) ; 
 if
-    [ $i -eq 8 ]
+    [ $i -eq 9 ]
 then
 echo "Hi" ;
 fi
