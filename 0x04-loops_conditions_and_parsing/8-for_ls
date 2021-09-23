@@ -2,5 +2,5 @@
 # Content of current dir, list format, cut leading number (Only for loop)
 for i in $(ls .)
 do
-echo "$i" | cut -d- -f2 
+    echo "$i" | cut -d- -f2 
 done
