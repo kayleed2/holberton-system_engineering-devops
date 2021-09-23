@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Another way to terminate task 4 infinity
+#include <signal.h>
+kill 10059
