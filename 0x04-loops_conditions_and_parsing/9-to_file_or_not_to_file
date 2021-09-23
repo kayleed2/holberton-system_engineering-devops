@@ -11,9 +11,7 @@ then
     fi
     if [ -f holbertonschool ]
     then
-	     echo "holberton school is a regular file"
-    else
-	echo "nothin"  
+	     echo "holberton school is a regular file"  
     fi
 
 else
