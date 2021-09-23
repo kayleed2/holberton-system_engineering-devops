@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 # Another way to terminate task 4 infinity
 #include <signal.h>
-file=$(ps ax | grep 4-to_infinity_and_beyond | cut -f1 | cut -d" " -f1)
-kill "$file"
+kill -9 $(pidof 4-to_infinity_and_beyond)
