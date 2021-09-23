@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # How to display bash lines
 # shellcheck disable=SC2009
-ps -H u -C bash
+ps -l bash
