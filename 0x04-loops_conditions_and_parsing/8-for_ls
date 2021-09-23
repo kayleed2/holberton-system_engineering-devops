@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Content of current dir, list format, cut leading number (Only for loop)
-for i in $(ls .)
+for i in *
 do
     echo "$i" | cut -d- -f2 
 done
