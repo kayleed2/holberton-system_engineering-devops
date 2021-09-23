@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# List processes: Current, all tty, user-orient
+ps -eH u
