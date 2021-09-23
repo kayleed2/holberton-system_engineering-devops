@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 # Another way to terminate task 4 infinity
-#include <signal.h>
-kill $(pgrep -f 4-to_infinity_and_beyond)
+kill "$(pgrep -f 4-to_infinity_and_beyond)"
 
