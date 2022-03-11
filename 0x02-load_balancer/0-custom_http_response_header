@@ -5,6 +5,7 @@ sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
+echo 'Hello World' | sudo tee '/var/www/html/index.nginx-debian.html'
 search="/listen [::]:80 default_server;"
 string="\tlisten [::]:80 default_server;\n\tadd_header X-Served-By $hostname;"
 sudo sed -i "s@$search@$string@" /etc/nginx/sites-enabled/default
