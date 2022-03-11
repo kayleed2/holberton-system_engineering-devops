@@ -11,8 +11,8 @@ sudo ufw allow 'Nginx HTTP'
 sudo touch /var/www/html/error404.html
 
 # Echo text into default error files
-echo 'Hello World' | sudo tee '/var/www/html/index.nginx-debian.html'
-echo "Ceci n'est pas une page" | sudo tee '/var/www/html/error404.html'
+echo 'Hello World' | sudo tee /var/www/html/index.nginx-debian.html
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/error404.html
 
 # Search for location in config file, repl w new strings
 search1="^\tlocation / {"
