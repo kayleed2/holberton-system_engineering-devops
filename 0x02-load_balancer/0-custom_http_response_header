@@ -1,11 +1,27 @@
 #!/usr/bin/env bash
 # Install nginx web server
 
+# Install NGINX
 sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
+
+# Create default error404 file
+sudo touch /var/www/html/error404.html
+
+# Echo text into default error files
 echo 'Hello World' | sudo tee '/var/www/html/index.nginx-debian.html'
-search="/listen [::]:80 default_server;"
-string="\tlisten [::]:80 default_server;\n\tadd_header X-Served-By $hostname;"
-sudo sed -i "s@$search@$string@" /etc/nginx/sites-enabled/default
+echo "Ceci n'est pas une page" | sudo tee '/var/www/html/error404.html'
+
+# Search for location in config file, repl w new strings
+search1="^\tlocation / {"
+string="\tlocation /redirect_me {\n\t\t return 301 \$scheme://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n\n\tlocation / {"
+string2="\terror_page 404 /error404.html;\n\n\tlocation / {"
+sudo sed -i "s@$search1@$string@" /etc/nginx/sites-enabled/default
+sudo sed -i "s@$search1@$string2@" /etc/nginx/sites-enabled/default
+
+# Search for server, add add_header
+search2="\tlisten [::]:80 default_server;"
+string3="\tlisten [::]:80 default_server;\n\tadd_header X-Served-By ${HOSTNAME};"
+sudo sed -i "s@$search2@$string3@" /etc/nginx/sites-enabled/default
