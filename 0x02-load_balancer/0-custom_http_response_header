@@ -17,13 +17,9 @@ echo "Ceci n'est pas une page" | sudo tee /var/www/html/error404.html
 # Search for location in config file, repl w new strings
 search1="^\tlocation / {"
 string="\tlocation /redirect_me {\n\t\t return 301 \$scheme://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n\n\tlocation / {"
-string2="\terror_page 404 /error404.html;\n\n\tlocation / {"
+string2="\terror_page 404 /error404.html;\n\n\tadd_header X-Served-By ${HOSTNAME};\n\n\tlocation / {"
 sudo sed -i "s@$search1@$string@" /etc/nginx/sites-enabled/default
 sudo sed -i "s@$search1@$string2@" /etc/nginx/sites-enabled/default
 
-# Search for server, add add_header
-search2="\tlisten [::]:80 default_server;"
-string3="\tlisten [::]:80 default_server;\n\tadd_header X-Served-By ${HOSTNAME};"
-sudo sed -i "s@$search2@$string3@" /etc/nginx/sites-enabled/default
-
+# Restart NGINX to save config changes
 sudo service nginx restart
