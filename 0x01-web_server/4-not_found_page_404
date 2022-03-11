@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 # Install nginx web server
 
-apt-get -y update
-apt-get -y install nginx
+sudo apt-get update
+sudo apt-get -y upgrade
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+echo 'Hello World' | sudo tee '/var/www/html/index.nginx-debian.html'
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/error404.html
+search="^\tlocation / {"
+string="\tlocation /redirect_me {\n\t\t return 301 \$scheme://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n\n\tlocation / {"
+string2="\terror_page 404 /error404.html;\n\n\tlocation / {"
+sudo sed -i "s@$search@$string@" /etc/nginx/sites-enabled/default
+sudo sed -i "s@$search@$string2@" /etc/nginx/sites-enabled/default
+sudo /etc/init.d/nginx restart
