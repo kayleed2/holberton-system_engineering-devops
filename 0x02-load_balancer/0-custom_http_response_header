@@ -25,3 +25,5 @@ sudo sed -i "s@$search1@$string2@" /etc/nginx/sites-enabled/default
 search2="\tlisten [::]:80 default_server;"
 string3="\tlisten [::]:80 default_server;\n\tadd_header X-Served-By ${HOSTNAME};"
 sudo sed -i "s@$search2@$string3@" /etc/nginx/sites-enabled/default
+
+sudo service nginx restart
