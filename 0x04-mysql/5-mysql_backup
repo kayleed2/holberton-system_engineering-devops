@@ -11,7 +11,6 @@ $1
 FILE="backup.sql"
 USER="root"
 PWD="$1"
-d='date +%d-%m-%Y'
 
 mysqldump --user=${USER} --password="${PWD}" --all-databases > ${FILE}
-tar -czvf "$d.tar.gz" ${FILE}
+tar -czvf "$(date '+%d-%m-%Y').tar.gz" ${FILE}
