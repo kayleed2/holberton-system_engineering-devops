@@ -10,13 +10,8 @@ $1
 
 FILE="backup.sql"
 USER="root"
-DATABASES=$(mysql -h $HOSTNAME -u $USER -p$PASS -e "SHOW DATABASES;" | tr -d "| " | grep -v Database)
 PWD="$1"
 d='date +%d-%m-%Y'
-for db in $DATABASES; do
-  FILE="$d.tar.gz"
 
-    mysqldump --opt --user=${USER} --password=${PWD} ${DATABASES} > ${FILE}
-
-    gzip $FILE
-done
+mysqldump --user=${USER} --password="${PWD}" --all-databases > ${FILE}
+tar -czvf "$d.tar.gz" ${FILE}
