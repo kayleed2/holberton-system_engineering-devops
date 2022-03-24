@@ -15,7 +15,7 @@ if __name__ == "__main__":
     complete = 0
 
     for k in todos.json():
-        if k.get('userId') == id:
+        if k.get('userId') is id:
             all += 1
         if k.get('userId') is id and k.get('completed') is True:
             complete += 1
