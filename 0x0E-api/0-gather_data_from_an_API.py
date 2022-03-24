@@ -4,13 +4,8 @@ import requests
 from os import sys
 
 if __name__ == "__main__":
-    try:
-        user_id = sys.argv[1]
-        id = int(user_id)
-
-    except ValueError:
-        print("ID not INT")
-
+    user_id = sys.argv[1]
+    id = int(user_id)
     user = requests.get("https://jsonplaceholder.typicode.com/users/{}"
                         .format(id))
     name = user.json().get("name")
