@@ -3,30 +3,29 @@
 import requests
 from os import sys
 
+if __name__ == "__main__":
+    try:
+        user_id = sys.argv[1]
+        id = int(user_id)
 
-try:
-    user_id = sys.argv[1]
-    id = int(user_id)
+    except ValueError:
+        print("ID not INT")
 
-except ValueError:
-    print("ID not INT")
+    user = requests.get("https://jsonplaceholder.typicode.com/users/{}".format(id))
+    name = user.json()["name"]
+    todos = requests.get("https://jsonplaceholder.typicode.com/todos")
 
-user = requests.get("https://jsonplaceholder.typicode.com/users/{}".format(id))
-name = user.json()["name"]
+    all = 0
+    complete = 0
 
-todos = requests.get("https://jsonplaceholder.typicode.com/todos")
+    for k in todos.json():
+        if k['userId'] == id:
+            all += 1
+        if k['userId'] is id and k['completed'] is True:
+            complete += 1
 
-all = 0
-complete = 0
+    print("Employee {} is done with tasks({}/{}):".format(name, complete, all))
 
-for k in todos.json():
-    if k['userId'] == id:
-        all += 1
-    if k['userId'] is id and k['completed'] is True:
-        complete += 1
-
-print("Employee {} is done with tasks({}/{}):".format(name, complete, all))
-
-for k in todos.json():
-    if k['userId'] is id and k['completed'] is True:
-        print("\t {}".format(k['title']))
+    for k in todos.json():
+        if k['userId'] is id and k['completed'] is True:
+            print("\t {}".format(k['title']))
