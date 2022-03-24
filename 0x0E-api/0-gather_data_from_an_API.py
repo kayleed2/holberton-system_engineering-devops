@@ -11,7 +11,8 @@ if __name__ == "__main__":
     except ValueError:
         print("ID not INT")
 
-    user = requests.get("https://jsonplaceholder.typicode.com/users/{}".format(id))
+    user = requests.get("https://jsonplaceholder.typicode.com/users/{}"
+                        .format(id))
     name = user.json().get("name")
     todos = requests.get("https://jsonplaceholder.typicode.com/todos")
 
