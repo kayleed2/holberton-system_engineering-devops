@@ -18,7 +18,7 @@ if __name__ == "__main__":
             for k in todos.json():
                 if k['userId'] == id:
                     dictionary = {"username": person['username'],
-                                "task": k['title'],
-                                "completed": k['completed']}
+                                  "task": k['title'],
+                                  "completed": k['completed']}
                     Dict[id].append(dictionary)
         json.dump(Dict, f)
