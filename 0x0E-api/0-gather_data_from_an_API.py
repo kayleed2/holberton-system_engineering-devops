@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Uses a REST API to retrieve information"""
+"""Uses a REST API to retrieve information,
+for a given employee ID, returns information about
+his/her TODO list progress."""
 import requests
 from os import sys
 
