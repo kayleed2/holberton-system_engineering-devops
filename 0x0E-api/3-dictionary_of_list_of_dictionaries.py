@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """Uses a REST API to retrieve information"""
-import requests
 import json
 from os import sys
+import requests
+
 
 if __name__ == "__main__":
     user = requests.get("https://jsonplaceholder.typicode.com/users")
