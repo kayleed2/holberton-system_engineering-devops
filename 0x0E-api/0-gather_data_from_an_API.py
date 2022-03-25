@@ -2,8 +2,9 @@
 """Uses a REST API to retrieve information,
 for a given employee ID, returns information about
 his/her TODO list progress."""
-import requests
 from os import sys
+import requests
+
 
 if __name__ == "__main__":
     user_id = sys.argv[1]
