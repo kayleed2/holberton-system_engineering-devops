@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script displays information about the subdomains
+
+
+if [[ $# -lt 2 ]]
+then
+    dig www.$1 > ./domaininfo
+    awk -F';' '{ print $1 }' ./domaininfo > ./specificinfo
+    echo "The subdomain www is a [RECORD_TYPE] record and points to [DESTINATION]"
+else
+    echo $1 $2 
+fi
