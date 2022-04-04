@@ -2,11 +2,18 @@
 # This script displays information about the subdomains
 
 
-if [[ $# -lt 2 ]]
-then
-    dig www.$1 > ./domaininfo
-    awk -F';' '{ print $1 }' ./domaininfo > ./specificinfo
-    echo "The subdomain www is a [RECORD_TYPE] record and points to [DESTINATION]"
-else
-    echo $1 $2 
-fi
+func () {
+
+    if [[ $# -eq 2 ]];
+    then
+        dig $2.$1 | grep -A1 'ANSWER SECTION:' | tr '\n' ' ' | awk '{split($0,a," "); split(a[4],b,"."); printf "The subdomain %s is a %s record and points to %s\n",b[1], a[7], a[8]}'
+    elif [ "$#" -eq 1 ]; 
+    then
+        dig www.$1 | grep -A1 'ANSWER SECTION:' | tr '\n' ' ' | awk '{split($0,a," "); printf "The subdomain www is a %s record and points to %s\n", a[7], a[8]}'
+        dig lb-01.$1 | grep -A1 'ANSWER SECTION:' | tr '\n' ' ' | awk '{split($0,a," "); printf "The subdomain lb-01 is a %s record and points to %s\n", a[7], a[8]}'
+        dig web-01.$1 | grep -A1 'ANSWER SECTION:' | tr '\n' ' ' | awk '{split($0,a," "); printf "The subdomain web-01 is a %s record and points to %s\n", a[7], a[8]}'
+        dig web-02.$1 | grep -A1 'ANSWER SECTION:' | tr '\n' ' ' | awk '{split($0,a," "); printf "The subdomain web-02 is a %s record and points to %s\n", a[7], a[8]}'
+    fi
+
+}
+func $1 $2
