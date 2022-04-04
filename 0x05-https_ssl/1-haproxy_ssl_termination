@@ -34,14 +34,14 @@ defaults
         errorfile 504 /etc/haproxy/errors/504.http
 
 frontend myproxy
-        bind :80
-        default_backend web_servers
-
-frontend www-kayleedao
         bind *:80
+        bind *:443 ssl crt /etc/ssl/www.kayleedao.tech.pem
         acl letsencrypt-acl path_beg /.well-known/acme-challenge/
         use_backend letsencrypt-backend if letsencrypt-acl
-        default _backend www-kayleedao
+        default_backend web_servers
+
+backend letsencrypt-backend
+        server certbot 127.0.0.1:8899
 
 backend web_servers
         balance roundrobin
